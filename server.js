@@ -4,7 +4,7 @@ const session = require('express-session');
 const { Pool } = require('pg');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 app.listen(port, '0.0.0.0');
 
 // ✅ YEH NAYA BLOCK DAALO — Railway health check ke liye
