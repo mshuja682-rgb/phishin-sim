@@ -130,6 +130,22 @@ app.get('/admin', async (req, res) => {
         res.send(`<h2>❌ Database Error</h2><pre>${e.message}</pre>`);
     }
 });
+// Debug — kaunsa database use ho raha hai
+app.get('/debug-db', async (req, res) => {
+    try {
+        const db = await pool.query('SELECT current_database() AS db, current_user AS usr, inet_server_addr() AS host');
+        const cnt = await pool.query('SELECT COUNT(*) AS c FROM victims');
+        res.send(`
+            <h2>Database Debug</h2>
+            <p><b>Database Name:</b> ${db.rows[0].db}</p>
+            <p><b>Database User:</b> ${db.rows[0].usr}</p>
+            <p><b>Host:</b> ${db.rows[0].host}</p>
+            <p><b>Total Rows in victims:</b> ${cnt.rows[0].c}</p>
+        `);
+    } catch(e) {
+        res.send(`<h2>Error</h2><pre>${e.message}</pre>`);
+    }
+});
 
 // Debug endpoint — DB connect hua ya nahi check karo
 app.get('/db-status', async (req, res) => {
